@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Củng cố Chương 3 Hóa học 10 - Liên kết hóa học</title>
+  <style>
+    :root{
+      --primary:#0f4c81;--primary2:#1677b8;--accent:#0f9d84;--bg:#f4f8fb;
+      --card:#ffffff;--text:#17324d;--muted:#61758a;--border:#d9e4ee;
+      --ok:#16803c;--bad:#c62828;--warn:#b26a00;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,"Segoe UI",sans-serif;background:linear-gradient(180deg,#eef7ff,#f8fbfd 35%,#f4f8fb);color:var(--text);line-height:1.55}
+    .top{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;padding:24px 18px;box-shadow:0 4px 16px rgba(15,76,129,.18)}
+    .top-inner{max-width:1100px;margin:auto;display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+    h1{margin:0;font-size:clamp(1.4rem,2.7vw,2.15rem)}
+    .subtitle{margin-top:6px;opacity:.93}
+    .teacher{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:10px 14px;border-radius:12px;font-weight:700}
+    .wrap{max-width:1100px;margin:22px auto;padding:0 14px 40px}
+    .student-box,.summary,.question{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 3px 12px rgba(23,50,77,.05)}
+    .student-box{padding:16px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-bottom:18px}
+    @media(max-width:700px){.student-box{grid-template-columns:1fr}}
+    label{font-weight:700;font-size:.92rem}
+    input[type=text]{width:100%;padding:10px 12px;border:1px solid #cbd8e4;border-radius:9px;font-size:1rem;margin-top:5px}
+    .summary{padding:14px 16px;margin-bottom:18px;background:#fdfefe}
+    .summary b{color:var(--primary)}
+    .question{padding:18px;margin:14px 0}
+    .qhead{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px}
+    .num{min-width:40px;height:34px;border-radius:9px;background:#e6f3ff;color:#0b5f9e;display:flex;align-items:center;justify-content:center;font-weight:800}
+    .qtext{font-weight:700;font-size:1.02rem}
+    .opts{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+    @media(max-width:760px){.opts{grid-template-columns:1fr}}
+    .opt{border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;gap:9px;align-items:flex-start;cursor:pointer;background:#fff;transition:.15s}
+    .opt:hover{border-color:#8dc4e9;background:#f6fbff}
+    .opt input{margin-top:3px;accent-color:var(--primary2)}
+    .explain{display:none;margin-top:12px;padding:10px 12px;border-radius:9px;background:#f2f7fb;border-left:4px solid var(--primary2);font-size:.94rem}
+    .explain.show{display:block}
+    .correct{border-color:#87d3a0!important;background:#f0fbf3!important}
+    .wrong{border-color:#f0a4a4!important;background:#fff3f3!important}
+    .toolbar{position:sticky;bottom:0;background:rgba(244,248,251,.94);backdrop-filter:blur(6px);padding:12px 0;margin-top:18px}
+    .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    button{border:none;border-radius:10px;padding:12px 22px;font-size:1rem;font-weight:800;cursor:pointer}
+    .submit{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(15,76,129,.25)}
+    .submit:hover{background:#0b3e6a}
+    .result{display:none;margin-top:18px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 4px 14px rgba(23,50,77,.07)}
+    .result.show{display:block}
+    .score{font-size:2rem;font-weight:900;color:var(--primary);margin:4px 0}
+    .note{color:var(--muted);font-size:.92rem}
+    .badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:.82rem;font-weight:800;margin-left:6px}
+    .b-ok{background:#dcf6e4;color:#126b31}.b-bad{background:#fde1e1;color:#a61f1f}
+    footer{text-align:center;color:#71859a;font-size:.88rem;margin-top:26px}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <div>
+        <h1>ÔN TẬP CỦNG CỐ CHƯƠNG 3 - HÓA HỌC 10</h1>
+        <div class="subtitle">Chủ đề: Liên kết hóa học • 20 câu trắc nghiệm nhiều lựa chọn</div>
+      </div>
+      <div class="teacher">Giáo viên: PHAN NGỌC ANH</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="student-box">
+      <div><label>Họ và tên<input id="hoten" type="text" placeholder="Nhập họ và tên học sinh"></label></div>
+      <div><label>Lớp<input id="lop" type="text" placeholder="Ví dụ: 10A1"></label></div>
+      <div><label>Số báo danh<input id="sbd" type="text" placeholder="Nếu có"></label></div>
+    </section>
+
+    <section class="summary">
+      <b>Nội dung củng cố:</b> Quy tắc octet; liên kết ion; liên kết cộng hóa trị; công thức Lewis; liên kết σ và π; độ phân cực liên kết; liên kết hydrogen; tương tác van der Waals. Mỗi câu đúng được <b>0,5 điểm</b>, tổng 10 điểm.
+    </section>
+
+    <div id="quiz"></div>
+
+    <div class="toolbar">
+      <div class="actions"><button class="submit" onclick="submitQuiz()">NỘP BÀI - CHẤM ĐIỂM</button></div>
+    </div>
+
+    <section id="result" class="result"></section>
+    <footer>Hóa học 10 • Củng cố Chương 3 • Giáo viên Phan Ngọc Anh</footer>
+  </main>
+
+<script>
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxq24iSyxMm8YLzMCvgTvCNgtXB3x3pZezZ3QNB91JVv4S7FzQjMivGG0MMn-M7Sg6kNg/exec";
+const MA_DE = "HOA10-C3";
+const startTime = Date.now();
+let daGuiKetQua = false;
+
+async function guiKetQuaGoogleSheets(payload) {
+  if (daGuiKetQua) return;
+  const status = document.getElementById('sendStatus');
+  if (status) status.textContent = 'Đang gửi kết quả về Google Sheets...';
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    daGuiKetQua = true;
+    if (status) status.textContent = '✓ Đã gửi kết quả về Google Sheets.';
+  } catch (err) {
+    if (status) status.textContent = '⚠ Chưa gửi được kết quả. Hãy báo giáo viên.';
+    console.error('Lỗi gửi Google Sheets:', err);
+  }
+}
+
+const Q = [
+{q:"Theo quy tắc octet, nguyên tử có xu hướng nhường, nhận hoặc góp chung electron để đạt cấu hình electron bền vững giống",o:["kim loại kiềm gần nhất","halogen gần nhất","khí hiếm gần nhất","nguyên tử hydrogen"],a:2,e:"Quy tắc octet: các nguyên tử có xu hướng đạt lớp electron ngoài cùng bền vững như khí hiếm gần nhất."},
+{q:"Khi hình thành ion Na⁺ từ nguyên tử Na, nguyên tử Na đã",o:["nhận 1 electron","nhường 1 electron","nhận 2 electron","nhường 2 electron"],a:1,e:"Na có 1 electron hóa trị nên dễ nhường 1 electron để tạo Na⁺."},
+{q:"Nguyên tử oxygen thường tạo ion O²⁻ bằng cách",o:["nhường 2 electron","nhận 2 electron","góp chung 1 electron","nhường 6 electron"],a:1,e:"O có 6 electron lớp ngoài cùng, nhận thêm 2 electron để đạt octet."},
+{q:"Hợp chất nào sau đây chủ yếu có liên kết ion?",o:["H₂O","NaCl","Cl₂","CH₄"],a:1,e:"NaCl được tạo bởi cation Na⁺ và anion Cl⁻, lực hút tĩnh điện giữa các ion tạo liên kết ion."},
+{q:"Công thức hợp chất ion tạo bởi Mg²⁺ và Cl⁻ là",o:["MgCl","Mg₂Cl","MgCl₂","Mg₂Cl₃"],a:2,e:"Để trung hòa điện tích: 1 Mg²⁺ kết hợp với 2 Cl⁻, nên công thức là MgCl₂."},
+{q:"Phát biểu nào đúng về tinh thể ion?",o:["Gồm các phân tử riêng biệt","Thường có nhiệt độ nóng chảy khá cao","Luôn dẫn điện ở trạng thái rắn","Dễ bay hơi ở nhiệt độ thường"],a:1,e:"Trong tinh thể ion, lực hút tĩnh điện giữa các ion khá mạnh nên thường có nhiệt độ nóng chảy cao."},
+{q:"Liên kết cộng hóa trị được hình thành chủ yếu do",o:["sự chuyển hoàn toàn electron từ nguyên tử này sang nguyên tử khác","sự góp chung một hay nhiều cặp electron giữa các nguyên tử","lực hút giữa các ion trái dấu","sự hút giữa proton và neutron"],a:1,e:"Liên kết cộng hóa trị hình thành do các nguyên tử góp chung một hoặc nhiều cặp electron."},
+{q:"Phân tử nào sau đây chứa liên kết cộng hóa trị không phân cực?",o:["HCl","HF","Cl₂","H₂O"],a:2,e:"Trong Cl₂, hai nguyên tử giống nhau có độ âm điện bằng nhau nên cặp electron liên kết được phân bố đều."},
+{q:"Trong phân tử HCl, cặp electron liên kết bị lệch về phía nguyên tử",o:["H vì H có độ âm điện lớn hơn","Cl vì Cl có độ âm điện lớn hơn","H vì H có bán kính nhỏ hơn","không lệch về phía nào"],a:1,e:"Cl có độ âm điện lớn hơn H nên cặp electron liên kết bị lệch về phía Cl."},
+{q:"Trong công thức Lewis của H₂O, nguyên tử O còn bao nhiêu cặp electron không liên kết?",o:["0","1","2","3"],a:2,e:"O có 6 electron hóa trị; sau khi tạo 2 liên kết O-H còn 4 electron, tức 2 cặp không liên kết."},
+{q:"Trong phân tử NH₃ có bao nhiêu liên kết cộng hóa trị N-H?",o:["1","2","3","4"],a:2,e:"NH₃ có ba liên kết đơn N-H."},
+{q:"Liên kết ba trong phân tử N₂ gồm",o:["3 liên kết σ","2 liên kết σ và 1 liên kết π","1 liên kết σ và 2 liên kết π","3 liên kết π"],a:2,e:"Liên kết ba gồm 1 liên kết σ và 2 liên kết π."},
+{q:"Liên kết đôi trong phân tử O₂ gồm",o:["1 σ và 1 π","2 σ","2 π","1 σ và 2 π"],a:0,e:"Liên kết đôi gồm một liên kết σ và một liên kết π."},
+{q:"Khi hiệu độ âm điện giữa hai nguyên tử liên kết tăng, liên kết cộng hóa trị thường",o:["giảm độ phân cực","tăng độ phân cực","luôn trở thành liên kết kim loại","không thay đổi tính chất"],a:1,e:"Hiệu độ âm điện càng lớn thì sự lệch electron càng mạnh, nên liên kết càng phân cực."},
+{q:"Chất nào sau đây có thể tạo liên kết hydrogen mạnh giữa các phân tử?",o:["CH₄","H₂O","H₂","Cl₂"],a:1,e:"H₂O có liên kết O-H và nguyên tử O có cặp electron tự do nên tạo được liên kết hydrogen giữa các phân tử."},
+{q:"Liên kết hydrogen giữa các phân tử nước góp phần làm cho nước",o:["có nhiệt độ sôi cao hơn đáng kể so với các chất có phân tử khối tương đương","mất hoàn toàn khả năng hòa tan chất phân cực","không thể tồn tại ở trạng thái lỏng","luôn phân hủy ở nhiệt độ phòng"],a:0,e:"Liên kết hydrogen làm tăng lực hút giữa các phân tử nước, nên nhiệt độ sôi cao hơn đáng kể."},
+{q:"Trong dãy hydrogen halide HF, HCl, HBr, HI, chất có nhiệt độ sôi cao bất thường do liên kết hydrogen là",o:["HF","HCl","HBr","HI"],a:0,e:"HF tạo liên kết hydrogen mạnh giữa các phân tử nên có nhiệt độ sôi cao bất thường."},
+{q:"Tương tác van der Waals thường mạnh hơn khi",o:["kích thước và khả năng phân cực của đám mây electron tăng","phân tử khối giảm mạnh","số electron giảm","các phân tử ở rất xa nhau"],a:0,e:"Phân tử càng lớn, nhiều electron và dễ phân cực thì lực phân tán London/van der Waals thường mạnh hơn."},
+{q:"Ethane (C₂H₆) có nhiệt độ sôi cao hơn methane (CH₄) chủ yếu vì",o:["C₂H₆ có liên kết hydrogen","C₂H₆ có tương tác van der Waals mạnh hơn do phân tử lớn hơn","CH₄ là hợp chất ion","C₂H₆ có liên kết ion"],a:1,e:"C₂H₆ có kích thước và số electron lớn hơn CH₄ nên tương tác van der Waals mạnh hơn."},
+{q:"Chất nào sau đây có cả liên kết ion và liên kết cộng hóa trị trong cùng một hợp chất?",o:["NaCl","H₂","NaOH","Cl₂"],a:2,e:"Trong NaOH có liên kết ion giữa Na⁺ và OH⁻, còn trong ion OH⁻ có liên kết cộng hóa trị O-H."}
+];
+
+function render(){
+  const box=document.getElementById('quiz');
+  box.innerHTML=Q.map((x,i)=>`<section class="question" id="q${i}">
+    <div class="qhead"><div class="num">${i+1}</div><div class="qtext">${x.q}</div></div>
+    <div class="opts">${x.o.map((t,j)=>`<label class="opt" id="q${i}o${j}"><input type="radio" name="q${i}" value="${j}"><span><b>${String.fromCharCode(65+j)}.</b> ${t}</span></label>`).join('')}</div>
+    <div class="explain" id="ex${i}"></div>
+  </section>`).join('');
+}
+
+async function submitQuiz(){
+  const name=document.getElementById('hoten').value.trim();
+  const lop=document.getElementById('lop').value.trim();
+  const sbd=document.getElementById('sbd').value.trim();
+  if(!name||!lop){alert('Vui lòng nhập Họ tên và Lớp trước khi nộp bài.');return;}
+  if(!confirm('Bạn có chắc chắn muốn nộp bài?')) return;
+  let correct=0, answered=0;
+  Q.forEach((x,i)=>{
+    const picked=document.querySelector(`input[name="q${i}"]:checked`);
+    if(picked) answered++;
+    const p=picked?Number(picked.value):-1;
+    if(p===x.a) correct++;
+    document.querySelectorAll(`input[name="q${i}"]`).forEach(inp=>inp.disabled=true);
+    if(p>=0) document.getElementById(`q${i}o${p}`).classList.add(p===x.a?'correct':'wrong');
+    document.getElementById(`q${i}o${x.a}`).classList.add('correct');
+    const ex=document.getElementById(`ex${i}`);
+    ex.classList.add('show');
+    ex.innerHTML=`<b>Đáp án: ${String.fromCharCode(65+x.a)}.</b> ${x.e}`;
+  });
+  const score=(correct*0.5).toFixed(1);
+  const r=document.getElementById('result');
+  r.classList.add('show');
+  r.innerHTML=`<h2>KẾT QUẢ</h2><div class="score">${score}/10</div>
+    <p><b>${name}</b> - Lớp <b>${lop}</b>${sbd ? ` - SBD <b>${sbd}</b>` : ''}</p>
+    <p>Đúng <b>${correct}/20</b> câu; đã trả lời ${answered}/20 câu.
+    <span class="badge ${correct>=14?'b-ok':'b-bad'}">${correct>=14?'Đạt':'Cần ôn thêm'}</span></p>
+    <p class="note">Đáp án và giải thích đã được hiển thị dưới từng câu.</p>
+    <p class="note" id="sendStatus">Đang gửi kết quả về Google Sheets...</p>`;
+
+  const elapsedSeconds = Math.max(0, Math.round((Date.now() - startTime) / 1000));
+  const minutes = Math.floor(elapsedSeconds / 60);
+  const seconds = elapsedSeconds % 60;
+  const thoiGianLamBai = `${minutes} phút ${seconds} giây`;
+
+  await guiKetQuaGoogleSheets({
+    hoTen: name,
+    lop: lop,
+    sbd: sbd,
+    maDe: MA_DE,
+    diem: Number(score),
+    soCauDung: correct,
+    thoiGianLamBai: thoiGianLamBai
+  });
+
+  r.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+render();
+</script>
+</body>
+</html>
